@@ -23,7 +23,14 @@ def introScene():
         # scene text
         if st.session_state["scenes_counter"]["intro_counter"] == 0:
             st.markdown(
-                f"<div class='container'>Welcome, {st.session_state.player_name}! You've just stepped into an exciting world where your financial choices shape your journey. From the bustling streets of Orchard Road to the peaceful parks of Bishan, Singapore is yours to explore. Along the way, you'll face important decisions—whether it's saving for a big goal, choosing the right job, or managing your spending wisely. But be careful! Just like in real life, challenges and surprises await at every turn. Are you ready to make smart choices and build your financial future? Let’s get started on this adventure!</p></div>",
+                f"""
+                <div class='container'>
+                    <p>Welcome, {st.session_state.player_name}! 
+                    <p>You're about to embark on an exciting journey where your financial decisions shape your path.</p>
+                    <p>From the bustling streets of Orchard Road to the peaceful parks of Bishan, Singapore is yours to explore. Along the way, you'll face important decisions—whether it's saving for a big goal, choosing the right job, or managing your spending wisely.</p>
+                    <p>But be careful! Just like in real life, challenges and surprises await at every turn. Are you ready to make smart choices and build your financial future? Let’s get started on this adventure!</p>
+                </div>
+                """,
                 unsafe_allow_html=True,
             )
 
@@ -40,8 +47,8 @@ def introScene():
    
         if selected_action == "Take a Job":
             st.session_state["scenes_counter"]["intro_counter"] += 1
-            st.session_state.place = "jobScene"  # we are moving our character to other scene
-            st.rerun()  # rerun is streamlit specific and rerund the app
+            st.session_state.place = "jobScene"  # Moving our character to other scene
+            st.rerun()  
 
         if selected_action == "Up-Skill":
             st.session_state["scenes_counter"]["intro_counter"] += 1
@@ -59,5 +66,5 @@ def jobScene():
 def upskillScene():
     st.header("UpSkill Scene. WIP")
 
-def jobScene():
+def investmentScene():
     st.header("Investment Scene. WIP")

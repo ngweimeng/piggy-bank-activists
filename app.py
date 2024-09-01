@@ -14,10 +14,10 @@ def local_css(file_name):
 st.set_page_config(page_title="Piggy Bank Activists", page_icon="🐷")
 
 #-----Variables-----#
-# Check if player provided his name and game can be started
-start = False
 
 # Game Variables
+if "player_name" not in st.session_state:
+    st.session_state.player_name = ""
 if "savings" not in st.session_state:
     st.session_state["savings"] = 10000
 if "debt" not in st.session_state:
@@ -37,30 +37,44 @@ local_css("style.css")
 
 # Create Start Screen
 st.title("🐷 Piggy Bank Activists")
+start_image = st.empty()
+start_image.image("images/start.webp",width=350)
 start_page = st.empty()
-#start_page.header("🐷 Piggy Bank Activists")
-start_page.subheader("This Place Is Under New Management By Order Of The Piggy Bank Activists", divider="gray")
+start_page.subheader("By Order of the Piggy Bank Activists...are you ready to embark on the greatest financial challenge of your life?💰", divider="gray")
 
 player_name_container = st.empty()
-player_name_container.text_input(
-    "Input your name and hit enter to start the game", key="player_name"
-)
+player_name = player_name_container.text_input(
+    "Input your name "
+    )
 
-if st.session_state.player_name != "":
-    player_name_container.empty()
-    start = True
+enter_button_container = st.empty()
+enter_button = enter_button_container.button("Enter")
+
+if enter_button:
+    if player_name.strip() != "":
+        st.session_state.player_name = player_name
+        start_image.empty()
+        player_name_container.empty()
+        enter_button_container.empty()
+    else:
+        st.warning("Please enter your name before proceeding.")
+
 
 # START THE GAME
-
-if start:
+if st.session_state.player_name != "":
 
     # Delete Start Screen
     start_page.empty()
+    start_image.empty()
+    player_name_container.empty()
+    enter_button_container.empty()
 
     if st.session_state.place == "introScene":
         scenes.introScene()
     elif st.session_state.place == "jobScene":
         scenes.jobScene()
+    elif st.session_state.place == "upskillScene":
+        scenes.upskillScene()
     elif st.session_state.place == "investmentScene":
         scenes.investmentScene()
     ### TO FILL WITH GAME SCENES ###
@@ -72,5 +86,5 @@ if start:
     col2.metric(label="Debt", value=st.session_state.debt, delta=0)
     col3.metric(label="Investments", value=st.session_state.investments, delta=0)
     style_metric_cards(
-        background_color="#black", border_color="#21212f", border_left_color="#21212f"
+        background_color="#21212f", border_color="#5b488b", border_left_color="#5b488b"
     )
