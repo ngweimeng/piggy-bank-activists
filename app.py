@@ -43,7 +43,7 @@ start_page.subheader("This Place Is Under New Management By Order Of The Piggy B
 
 player_name_container = st.empty()
 player_name_container.text_input(
-    "State your name and hit enter to start the game", key="player_name"
+    "Input your name and hit enter to start the game", key="player_name"
 )
 
 if st.session_state.player_name != "":

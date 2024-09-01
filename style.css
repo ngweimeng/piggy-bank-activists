@@ -1,8 +1,8 @@
-body {
+[data-testid="stAppViewContainer"] {
     background-image: url("images/background.jpg");
-    background-size: cover;
+    background-size: 100vw 100vh; 
+    background-position: center;  
     background-repeat: no-repeat;
-    background-position: center;
 }
 
 .container {
