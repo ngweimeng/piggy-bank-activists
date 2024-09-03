@@ -261,7 +261,7 @@ def houseScene():
             st.session_state.place = "endScene"  # Moving our character to other scene
             st.rerun()  
 
-        if selected_action == "Invest":
+        if selected_action == "BTO":
             st.session_state["debt"] += 100
             st.session_state["cash"] -= 20
             st.session_state["investments"] += 200
@@ -269,7 +269,7 @@ def houseScene():
             st.session_state.place = "endScene"
             st.rerun()
 
-        if selected_action == "Spend":
+        if selected_action == "Rent":
             st.session_state["cash"] -= 20
             st.session_state["counter"] += 1
             st.session_state.place = "endScene"
@@ -296,7 +296,7 @@ def endScene():
     st.header("You made it!")
 
     # Possible actions
-    actions = ["Condo", "BTO", "Rent"]
+    #actions = ["Condo", "BTO", "Rent"]
 
     col1, col2 = st.columns(2, gap="small")
     with col1:
